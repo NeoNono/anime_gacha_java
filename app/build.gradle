@@ -9,6 +9,9 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+
+    id 'org.springframework.boot' version '2.6.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 repositories {
@@ -17,11 +20,17 @@ repositories {
 }
 
 dependencies {
+    runtimeOnly 'com.h2database:h2'
     // Use JUnit test framework.
     testImplementation 'junit:junit:4.13.2'
 
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
+    runtimeOnly 'mysql:mysql-connector-java'
 }
 
 application {
