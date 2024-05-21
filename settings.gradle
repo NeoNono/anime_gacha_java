@@ -8,6 +8,8 @@
  */
 
 rootProject.name = 'oop_poliheh'
-include('app')
+//include('app')
 include 'commons'
+include 'app'
+//findProject(':app:commons')?.name = 'commons'
 

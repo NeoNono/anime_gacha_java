@@ -1,4 +1,4 @@
-package oop_poliheh.controllers;
+package server.controllers;
 
 public class CharacterController {
 }

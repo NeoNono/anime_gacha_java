@@ -31,9 +31,10 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
     runtimeOnly 'mysql:mysql-connector-java'
+    implementation project(":commons")
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'oop_poliheh.App'
+    mainClass = 'server.App'
 }
