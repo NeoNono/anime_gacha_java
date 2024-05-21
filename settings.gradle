@@ -9,3 +9,5 @@
 
 rootProject.name = 'oop_poliheh'
 include('app')
+include 'commons'
+
