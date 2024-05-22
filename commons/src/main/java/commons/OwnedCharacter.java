@@ -4,11 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 import java.util.Objects;
 
 
 @Entity
-public class OwnedCharacter {
+public class OwnedCharacter implements Serializable {
     @Id
     public long id;
     @Id

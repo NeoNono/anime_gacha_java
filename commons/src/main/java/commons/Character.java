@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
  //       property = "id")
 @Entity
-public class Character {
+public class Character implements Serializable {
     @Id
     public long code;
     public String rarity;

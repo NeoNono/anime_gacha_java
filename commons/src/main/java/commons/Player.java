@@ -7,12 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.HashSet;
 
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
 //        property = "id")
 @Entity
-public class Player {
+public class Player implements Serializable {
 
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
