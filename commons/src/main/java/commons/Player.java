@@ -1,30 +1,43 @@
 package commons;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
+import java.util.Objects;
 
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property = "id")
 @Entity
 public class Player implements Serializable {
 
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
     public long id;
     public int balance;
-//    public HashSet<Character> characterCollection;
-
-
 
     public Player() {
-        this.balance = 100;
-//        this.characterCollection = new
+        //for object mappers
     }
 
+    public Player(long id) {
+        this.id = id;
+        this.balance = 100;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return id == player.id && balance == player.balance;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, balance);
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", balance=" + balance +
+                '}';
+    }
 }
