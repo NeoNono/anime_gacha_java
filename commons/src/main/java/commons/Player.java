@@ -3,12 +3,10 @@ package commons;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
 //        property = "id")
@@ -22,8 +20,11 @@ public class Player implements Serializable {
 //    public HashSet<Character> characterCollection;
 
 
+
     public Player() {
         this.balance = 100;
 //        this.characterCollection = new
     }
+
+
 }
