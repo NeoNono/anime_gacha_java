@@ -10,16 +10,17 @@ import java.util.Objects;
 
 @Entity
 public class OwnedCharacter implements Serializable {
-    @Id
-    public long id;
-    @Id
-    public long code;
+//    @Id
+//    public long id;
+//    @Id
+//    public long code;
 
-
+    @Id
     @ManyToOne
     @JoinColumn(name = "code", referencedColumnName = "code")
     private Character character;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "id",referencedColumnName = "id")
     private Player player;
@@ -28,9 +29,7 @@ public class OwnedCharacter implements Serializable {
         //for object mappers
     }
 
-    public OwnedCharacter(long id, long code, Character character, Player player) {
-        this.id = id;
-        this.code = code;
+    public OwnedCharacter(Character character, Player player) {
         this.character = character;
         this.player = player;
     }
@@ -40,21 +39,18 @@ public class OwnedCharacter implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OwnedCharacter that = (OwnedCharacter) o;
-        return id == that.id && code == that.code && Objects.equals(character, that.character)
-                && Objects.equals(player, that.player);
+        return Objects.equals(character, that.character) && Objects.equals(player, that.player);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, code, character, player);
+        return Objects.hash(character, player);
     }
 
     @Override
     public String toString() {
         return "OwnedCharacter{" +
-                "id=" + id +
-                ", code=" + code +
-                ", character=" + character +
+                "character=" + character +
                 ", player=" + player +
                 '}';
     }

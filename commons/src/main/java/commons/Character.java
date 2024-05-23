@@ -20,19 +20,19 @@ public class Character implements Serializable {
     public int damage;
     public int price;
 
+    public final float SELL_COEFF = (float) 0.65;
+
 
     public Character() {
         //for object mappers
     }
 
-    public Character(long code, String rarity, int health, int stamina, int damage, int price) {
-        this.code = code;
+    public Character( String rarity, int health, int stamina, int damage, int price) {
         this.rarity = rarity;
         this.health = health;
         this.stamina = stamina;
         this.damage = damage;
         this.price = price;
-        int sellPrice = (int) (this.price*0.65);
     }
 
     @Override

@@ -11,12 +11,8 @@ public class Player implements Serializable {
     public long id;
     public int balance;
 
-    public Player() {
-        //for object mappers
-    }
 
-    public Player(long id) {
-        this.id = id;
+    public Player() {
         this.balance = 100;
     }
 
