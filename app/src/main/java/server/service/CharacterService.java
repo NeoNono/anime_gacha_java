@@ -10,4 +10,8 @@ public class CharacterService {
 
     @Autowired
     public CharacterService(CharacterRepository characterRepository){this.characterRepository=characterRepository;}
+
+    public boolean exists(long code) {
+        return characterRepository.existsById(code);
+    }
 }
