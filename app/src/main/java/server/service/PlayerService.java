@@ -28,6 +28,10 @@ public class PlayerService {
     public Player getPlayerById(Long id) {
         return playerRepository.findById(id).get();
     }
+    public List<Player> getPlayers() {
+        return playerRepository.findAll();
+    }
+
 
 
 }

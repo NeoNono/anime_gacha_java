@@ -13,9 +13,8 @@ public class RouletteService {
         this.ownedCharacterRepository = ownedCharacterRepository;
     }
 
-    public boolean exists(long player_id) {
-        return ownedCharacterRepository.existsById(player_id);
-    }
+
+
 
 
 }
