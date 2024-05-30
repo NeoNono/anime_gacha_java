@@ -36,9 +36,6 @@ public class PlayerService {
         playerRepository.deleteById(id);
     }
 
-    public int getPlayerBalanceById(long id) {
-        return playerRepository.findById(id).get().getBalance();
-    }
 
     public Player createPlayer(long id) {
         Player player = new Player();
