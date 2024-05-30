@@ -16,6 +16,18 @@ public class Player implements Serializable {
         this.balance = 100;
     }
 
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

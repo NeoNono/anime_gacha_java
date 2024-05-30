@@ -25,13 +25,31 @@ public class PlayerService {
         return playerRepository.existsById(id);
     }
 
-    public Player getPlayerById(Long id) {
+    public Player getPlayerById(long id) {
         return playerRepository.findById(id).get();
     }
     public List<Player> getPlayers() {
         return playerRepository.findAll();
     }
 
+    public void deletePlayer(long id) {
+        playerRepository.deleteById(id);
+    }
+
+    public int getPlayerBalanceById(long id) {
+        return playerRepository.findById(id).get().getBalance();
+    }
+
+    public Player createPlayer(long id) {
+        Player player = new Player();
+        player.setId(id);
+        return playerRepository.save(player);
+    }
+
+    public int getPlayerBalance(long id){
+        Player player = playerRepository.findById(id).orElse(null);
+        return player.getBalance();
+    }
 
 
 }
