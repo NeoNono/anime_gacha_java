@@ -37,9 +37,8 @@ public class PlayerService {
     }
 
 
-    public Player createPlayer(long id) {
+    public Player createPlayer() {
         Player player = new Player();
-        player.setId(id);
         return playerRepository.save(player);
     }
 

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -14,7 +16,9 @@ import java.util.Objects;
 public class Character implements Serializable {
     @Id
     public long code;
+    public String name;
     public String rarity;
+
     public int health;
     public int stamina;
     public int damage;
@@ -23,11 +27,13 @@ public class Character implements Serializable {
     public final float SELL_COEFF = (float) 0.65;
 
 
+
     public Character() {
         //for object mappers
     }
 
-    public Character( String rarity, int health, int stamina, int damage, int price) {
+    public Character( String name, String rarity,  int health, int stamina, int damage, int price) {
+        this.name = name;
         this.rarity = rarity;
         this.health = health;
         this.stamina = stamina;
@@ -61,6 +67,8 @@ public class Character implements Serializable {
                 ", price=" + price +
                 '}';
     }
+
+
 }
 
 
