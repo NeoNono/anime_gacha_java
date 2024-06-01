@@ -19,7 +19,7 @@ public class Character implements Serializable {
     @Id
     public long code;
     public String name;
-    public String rarity;
+    public Rarity rarity;
 
     public int health;
     public int stamina;
@@ -36,7 +36,7 @@ public class Character implements Serializable {
         //for object mappers
     }
 
-    public Character( String name, String rarity,  int health, int stamina, int damage, int price) {
+    public Character( String name, Rarity rarity,  int health, int stamina, int damage, int price) {
         this.name = name;
         this.rarity = rarity;
         this.health = health;
@@ -49,7 +49,7 @@ public class Character implements Serializable {
         return name;
     }
 
-    public String getRarity() {
+    public Rarity getRarity() {
         return rarity;
     }
 
