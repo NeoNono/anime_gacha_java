@@ -25,7 +25,7 @@ public class Character implements Serializable {
     public int stamina;
     public int damage;
 
-    public String appearance; //????
+    public String appearance;
     public int price;
 
     public final float SELL_COEFF = (float) 0.65;
@@ -36,13 +36,14 @@ public class Character implements Serializable {
         //for object mappers
     }
 
-    public Character( String name, Rarity rarity,  int health, int stamina, int damage, int price) {
+    public Character( String name, Rarity rarity,  int health, int stamina, int damage, int price, String appearance) {
         this.name = name;
         this.rarity = rarity;
         this.health = health;
         this.stamina = stamina;
         this.damage = damage;
         this.price = price;
+        this.appearance = appearance;
     }
 
     public String getName() {
@@ -85,6 +86,10 @@ public class Character implements Serializable {
         this.damage = damage;
     }
 
+    public String getAppearance() {
+        return appearance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,27 +97,29 @@ public class Character implements Serializable {
         Character character = (Character) o;
         return code == character.code && health == character.health && stamina == character.stamina
                 && damage == character.damage && price == character.price
-                && Objects.equals(rarity, character.rarity);
+                && Objects.equals(name, character.name) && rarity == character.rarity
+                && Objects.equals(appearance, character.appearance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, rarity, health, stamina, damage, price);
+        return Objects.hash(code, name, rarity, health, stamina, damage, appearance, price, SELL_COEFF);
     }
 
     @Override
     public String toString() {
         return "Character{" +
                 "code=" + code +
-                ", rarity='" + rarity + '\'' +
+                ", name='" + name + '\'' +
+                ", rarity=" + rarity +
                 ", health=" + health +
                 ", stamina=" + stamina +
                 ", damage=" + damage +
+                ", appearance='" + appearance + '\'' +
                 ", price=" + price +
+                ", SELL_COEFF=" + SELL_COEFF +
                 '}';
     }
-
-
 }
 
 
