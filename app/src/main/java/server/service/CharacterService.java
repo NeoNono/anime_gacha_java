@@ -15,9 +15,14 @@ public class CharacterService {
 
     private final CharacterRepository characterRepository;
 
-//    public static final List<Character> CHARACTERS = List.of(
-//            new Character("hehe", Rarity.RARE, 1, 2, 3, 4)
-//    );
+//
+//    public List<Character>possibleCharacters = List.of(new Character("Raiden Shogun", RARE, 40, 20, 8, 3500 ),
+//            new Character("Shrek", LEGENDARY, 50, 25, 9, 5000),
+//            new Character("Ayanami Rei", REGULAR, 35, 15, 4, 2000),
+//            new Character("Lucy Heartfilia", REGULAR, 30, 15, 3, 1500),
+//            new Character("Boa Hancock", RARE, 40, 18, 5, 3700),
+//            new Character("Asuka Langley Soryu", RARE, 38, 15, 5, 3700),
+//            new Character("Nezuko", LEGENDARY, 45, 15,9, 4500 ));
 
     @Autowired
     public CharacterService(CharacterRepository characterRepository){this.characterRepository=characterRepository;}

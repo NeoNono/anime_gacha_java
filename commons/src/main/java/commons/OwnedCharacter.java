@@ -1,26 +1,20 @@
 package commons;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 
 @Entity
 public class OwnedCharacter implements Serializable {
-//    @Id
-//    public long id;
-//    @Id
-//    public long code;
 
-    @Id
+    @EmbeddedId
+    public OwnedCharacterId ownedCharacterId;
+
     @ManyToOne
     @JoinColumn(name = "code", referencedColumnName = "code")
     private Character character;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "id",referencedColumnName = "id")
     private Player player;

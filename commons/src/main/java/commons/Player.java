@@ -8,6 +8,8 @@ import java.util.Objects;
 public class Player implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     public long id;
     public int balance;
 
@@ -20,13 +22,6 @@ public class Player implements Serializable {
         return balance;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getId() {
-        return id;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static commons.Rarity.*;
+
 
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
  //       property = "id")
@@ -22,6 +24,8 @@ public class Character implements Serializable {
     public int health;
     public int stamina;
     public int damage;
+
+    public String appearance; //????
     public int price;
 
     public final float SELL_COEFF = (float) 0.65;
@@ -39,6 +43,46 @@ public class Character implements Serializable {
         this.stamina = stamina;
         this.damage = damage;
         this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getRarity() {
+        return rarity;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getStamina() {
+        return stamina;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public float getSELL_COEFF() {
+        return SELL_COEFF;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     @Override

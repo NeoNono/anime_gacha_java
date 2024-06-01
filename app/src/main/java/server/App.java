@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan(basePackages = {"commons", "server"})
-@EnableJpaRepositories(basePackages = {"oop_poliheh"})
+@EnableJpaRepositories(basePackages = {"server.database"})
 public class App {
 
 

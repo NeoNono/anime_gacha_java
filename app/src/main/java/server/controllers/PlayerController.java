@@ -15,12 +15,11 @@ public class PlayerController {
 
 private final PlayerService playerService;
 
-private final SimpMessagingTemplate simpmessagingTemplate;
 private final RouletteService rouletteService;
 
-    public PlayerController(PlayerService playerService, SimpMessagingTemplate simpmessagingTemplate, RouletteService rouletteService) {
+    public PlayerController(PlayerService playerService,  RouletteService rouletteService) {
         this.playerService = playerService;
-        this.simpmessagingTemplate = simpmessagingTemplate;
+
         this.rouletteService = rouletteService;
     }
 
@@ -39,7 +38,6 @@ private final RouletteService rouletteService;
         }
         Player dp = playerService.getPlayerById(id);
         playerService.deletePlayer(id);
-        simpmessagingTemplate.convertAndSend(String.valueOf(dp.id), dp);
         return ResponseEntity.ok(dp);
     }
 
