@@ -34,6 +34,13 @@ public class CharacterService {
     @Autowired
     public CharacterService(CharacterRepository characterRepository){this.characterRepository=characterRepository;}
 
+    public void seedDatabase(){
+        for(Character character : possibleCharacters){
+            this.characterRepository.save(character);
+        }
+    }
+
+
     public boolean exists(long code) {
         return characterRepository.existsById(code);
     }

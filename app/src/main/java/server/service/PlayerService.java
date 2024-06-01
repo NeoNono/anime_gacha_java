@@ -25,7 +25,7 @@ public class PlayerService {
         this.playerRepository = playerRepository;
         this.ownedCharacterRepository = ownedCharacterRepository;
         this.characterRepository = characterRepository;
-        defaultCharacter = this.characterRepository.findById(Long.valueOf(1)).get();
+        defaultCharacter = this.characterRepository.findById(Long.valueOf(42)).get();
     }
 
 

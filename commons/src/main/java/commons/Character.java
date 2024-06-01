@@ -2,8 +2,7 @@ package commons;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +16,7 @@ import static commons.Rarity.*;
 @Entity
 public class Character implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public long code;
     public String name;
     public Rarity rarity;
@@ -24,7 +24,7 @@ public class Character implements Serializable {
     public int health;
     public int stamina;
     public int damage;
-
+    @Column(length = 10000)
     public String appearance;
     public int price;
 

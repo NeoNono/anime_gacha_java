@@ -2,6 +2,7 @@ package server.controllers;
 
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import server.service.CharacterService;
@@ -20,6 +21,12 @@ public class CharacterController {
         this.characterService = characterService;
         this.rouletteService = rouletteService;
     }
+
+    @PostMapping("/characters/seed")
+    public void seedDatabase(){
+        this.characterService.seedDatabase();
+    }
+
 
 
 
