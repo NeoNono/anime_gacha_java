@@ -28,11 +28,6 @@ public class PlayerService {
         defaultCharacter = this.characterRepository.findById(Long.valueOf(42)).get();
     }
 
-
-    public Player addPlayer(Player player){
-        return playerRepository.save(player);
-    }
-
     public boolean exists(long id) {
         return playerRepository.existsById(id);
     }
@@ -40,10 +35,6 @@ public class PlayerService {
     public Player getPlayerById(long id) {
         return playerRepository.findById(id).get();
     }
-    public List<Player> getPlayers() {
-        return playerRepository.findAll();
-    }
-
     public void deletePlayer(long id) {
         playerRepository.deleteById(id);
     }
