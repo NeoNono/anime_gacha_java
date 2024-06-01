@@ -42,7 +42,7 @@ private final RouletteService rouletteService;
     }
 
     @PostMapping("/players")
-    public ResponseEntity<Player> createPlayer() {
+    public ResponseEntity<Player> createPlayer() {  //assign character for a player after defining player's id
         Player player = playerService.createPlayer();
         return ResponseEntity.ok(player);
     }

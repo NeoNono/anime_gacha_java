@@ -13,6 +13,11 @@ public class OwnedCharacterId implements Serializable {
     public OwnedCharacterId() {
     }
 
+    public OwnedCharacterId(long characterCode, long playerId) {
+        this.characterCode = characterCode;
+        this.playerId = playerId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

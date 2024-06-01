@@ -2,9 +2,11 @@ package server.service;
 
 import commons.Character;
 import commons.OwnedCharacter;
+import commons.OwnedCharacterId;
 import commons.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import server.database.CharacterRepository;
 import server.database.OwnedCharacterRepository;
 import server.database.PlayerRepository;
 
@@ -14,10 +16,16 @@ public class PlayerService {
     private final PlayerRepository playerRepository;
 
     private final OwnedCharacterRepository ownedCharacterRepository;
+
+    private final CharacterRepository characterRepository;
+
+    private Character defaultCharacter;
     @Autowired
-    public PlayerService(PlayerRepository playerRepository, OwnedCharacterRepository ownedCharacterRepository) {
+    public PlayerService(PlayerRepository playerRepository, OwnedCharacterRepository ownedCharacterRepository, CharacterRepository characterRepository) {
         this.playerRepository = playerRepository;
         this.ownedCharacterRepository = ownedCharacterRepository;
+        this.characterRepository = characterRepository;
+        defaultCharacter = this.characterRepository.findById(Long.valueOf(1)).get();
     }
 
 
@@ -41,9 +49,10 @@ public class PlayerService {
     }
 
 
-    public Player createPlayer() {   //assign character for a player after defining player's id
+    public Player createPlayer() {
         Player player = playerRepository.save(new Player());
-        return ;
+        ownedCharacterRepository.save(new OwnedCharacter(defaultCharacter, player));
+        return player;
     }
 
     public int getPlayerBalance(long id){
