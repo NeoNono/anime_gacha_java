@@ -40,6 +40,11 @@ public class CharacterService {
         }
     }
 
+    public String getCharacterAppearance(long code){
+        Character character = characterRepository.findById(code).orElse(null);
+        return character.getAppearance();
+    }
+
 
     public boolean exists(long code) {
         return characterRepository.existsById(code);
