@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import server.database.OwnedCharacterRepository;
 import server.service.CharacterService;
+import server.service.FightService;
 import server.service.PlayerService;
 import server.service.RouletteService;
 
@@ -21,10 +22,14 @@ public class RouletteController {
 
     private final CharacterService characterService;
 
-    public RouletteController(RouletteService rouletteService, PlayerService playerService, CharacterService characterService) {
+    private final FightService fightService;
+
+    public RouletteController(RouletteService rouletteService, PlayerService playerService,
+                              CharacterService characterService, FightService fightService) {
         this.rouletteService = rouletteService;
         this.playerService = playerService;
         this.characterService = characterService;
+        this.fightService = fightService;
     }
 
     @GetMapping(path = {"", "/"})
@@ -44,9 +49,5 @@ public class RouletteController {
 
     }
 
-    @GetMapping("/fights")
-    public ResponseEntity<List<Fight>>possibleFights(){
-        List<Fight> fights = rouletteService.getFights();
-        return ResponseEntity.ok(fights);
-    }
+
 }

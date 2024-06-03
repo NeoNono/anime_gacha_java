@@ -12,6 +12,7 @@ import server.service.PlayerService;
 import server.service.RouletteService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 public class PlayerController {
@@ -75,7 +76,7 @@ private final CharacterService characterService;
         catch (IllegalStateException e) {
             return ResponseEntity.badRequest().build();
         }
-        catch (IllegalArgumentException e) {
+        catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
         }
     }
