@@ -1,10 +1,12 @@
 package server.controllers;
 
+import commons.OwnedCharacter;
 import commons.Player;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import server.database.OwnedCharacterRepository;
+import server.service.CharacterService;
 import server.service.PlayerService;
 import server.service.RouletteService;
 
@@ -16,11 +18,12 @@ public class PlayerController {
 private final PlayerService playerService;
 
 private final RouletteService rouletteService;
+private final CharacterService characterService;
 
-    public PlayerController(PlayerService playerService,  RouletteService rouletteService) {
+    public PlayerController(PlayerService playerService,  RouletteService rouletteService, CharacterService characterService) {
         this.playerService = playerService;
-
         this.rouletteService = rouletteService;
+        this.characterService = characterService;
     }
 
     @GetMapping(path = "/players/{id}")
@@ -32,7 +35,7 @@ private final RouletteService rouletteService;
     }
 
     @DeleteMapping(path = "/players/{id}")
-    public ResponseEntity<Player> deleteById(@PathVariable("id") long id) {
+    public ResponseEntity<Player> deleteById(@PathVariable long id) {
         if (id < 0 || !playerService.exists(id)) {
             return ResponseEntity.badRequest().build();
         }
@@ -42,7 +45,7 @@ private final RouletteService rouletteService;
     }
 
     @PostMapping("/players")
-    public ResponseEntity<Player> createPlayer() {  //assign character for a player after defining player's id
+    public ResponseEntity<Player> createPlayer() {
         Player player = playerService.createPlayer();
         return ResponseEntity.ok(player);
     }
@@ -52,6 +55,15 @@ private final RouletteService rouletteService;
         int balance = playerService.getPlayerBalance(id);
         return ResponseEntity.ok(balance);
     }
+
+    @GetMapping("/players/{id}/characters")
+    public ResponseEntity<List<OwnedCharacter>> ownedCharacters(@PathVariable long id){
+        if (id < 0 || !playerService.exists(id)) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(playerService.getPlayerCharacters(id));
+    }
+
 
 
 }

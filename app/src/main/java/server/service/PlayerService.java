@@ -25,7 +25,7 @@ public class PlayerService {
         this.playerRepository = playerRepository;
         this.ownedCharacterRepository = ownedCharacterRepository;
         this.characterRepository = characterRepository;
-        defaultCharacter = this.characterRepository.findById(Long.valueOf(42)).get();
+     //   defaultCharacter = this.characterRepository.findById(Long.valueOf(11)).get();
     }
 
     public boolean exists(long id) {
@@ -42,7 +42,12 @@ public class PlayerService {
 
     public Player createPlayer() {
         Player player = playerRepository.save(new Player());
-        ownedCharacterRepository.save(new OwnedCharacter(defaultCharacter, player));
+
+           Character defaultCharacter = characterRepository.findById(13L).orElseThrow(() -> new RuntimeException("Default character not found"));
+
+        System.out.println("found the default character with ID " + defaultCharacter.code);
+
+        ownedCharacterRepository.save(new OwnedCharacter(new OwnedCharacterId(defaultCharacter, player)));
         return player;
     }
 
@@ -51,5 +56,9 @@ public class PlayerService {
         return player.getBalance();
     }
 
+
+      public List<OwnedCharacter> getPlayerCharacters(long id){
+        return ownedCharacterRepository.findAllByOwnedCharacterIdPlayerId(id);
+    }
 
 }

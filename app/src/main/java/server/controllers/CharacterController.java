@@ -1,11 +1,15 @@
 package server.controllers;
 
-import org.checkerframework.checker.units.qual.A;
+import commons.Character;
+import commons.OwnedCharacter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import server.service.CharacterService;
 import server.service.RouletteService;
+
+import javax.xml.stream.events.Characters;
+import java.util.List;
 
 @RestController
 public class CharacterController {
@@ -26,11 +30,20 @@ public class CharacterController {
         this.characterService.seedDatabase();
     }
 
-    @GetMapping("/characters/{id}/appearance")
+    @GetMapping("/characters/{code}/appearance")
     public ResponseEntity<String> getCharacterAppearance(@PathVariable long code) {
         String appearance = characterService.getCharacterAppearance(code);
         return ResponseEntity.ok(appearance);
     }
+
+    @GetMapping("/characters")
+    public ResponseEntity<List<Character>> getPossibleCharacters() {
+        List<Character> possibleCharacters = characterService.getPossibleCharacters();
+        return ResponseEntity.ok(possibleCharacters);
+    }
+
+
+
 
 
 

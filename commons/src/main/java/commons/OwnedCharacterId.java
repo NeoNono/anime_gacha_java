@@ -1,21 +1,31 @@
 package commons;
 
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 public class OwnedCharacterId implements Serializable {
 
-    public long characterCode;
-    public long playerId;
+    @ManyToOne
+    @MapsId("characterCode")
+    @JoinColumn(name = "code", referencedColumnName = "code")
+    public Character character;
+
+    @ManyToOne
+    @MapsId("playerId")
+    @JoinColumn(name = "id",referencedColumnName = "id")
+    public Player player;
 
     public OwnedCharacterId() {
     }
 
-    public OwnedCharacterId(long characterCode, long playerId) {
-        this.characterCode = characterCode;
-        this.playerId = playerId;
+    public OwnedCharacterId(Character character, Player player) {
+        this.character = character;
+        this.player = player;
     }
 
     @Override
@@ -23,11 +33,12 @@ public class OwnedCharacterId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OwnedCharacterId that = (OwnedCharacterId) o;
-        return characterCode == that.characterCode && playerId == that.playerId;
+        return Objects.equals(character, that.character) &&
+                Objects.equals(player, that.player);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(characterCode, playerId);
+        return Objects.hash(character, player);
     }
 }

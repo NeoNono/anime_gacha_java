@@ -1,5 +1,7 @@
 package server.controllers;
 
+import commons.Character;
+import commons.Fight;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,6 +9,8 @@ import server.database.OwnedCharacterRepository;
 import server.service.CharacterService;
 import server.service.PlayerService;
 import server.service.RouletteService;
+
+import java.util.List;
 
 @RestController
 public class RouletteController {
@@ -24,7 +28,7 @@ public class RouletteController {
     }
 
     @GetMapping(path = {"", "/"})
-   public ResponseEntity<String> getMethod(){
+    public ResponseEntity<String> getMethod() {
         String welcomeMessage = """
                 <p>
                 Welcome to GachaGirls! <br>
@@ -36,13 +40,13 @@ public class RouletteController {
                 </p>
                 """;
 
-        return ResponseEntity.ok(welcomeMessage); // ResponseEntity.ok("\n" +
-//                "Choose an option:\n" +
-//                "1- check the collection\n" +
-//                "2- pull for character\n" +
-//                "3- open the store *\n" +
-//                "4- upgrade your character from the collection\n" +
-//                "5- fight a character\n" +
-//                "6 - sell the character");
+        return ResponseEntity.ok(welcomeMessage);
+
+    }
+
+    @GetMapping("/fights")
+    public ResponseEntity<List<Fight>>possibleFights(){
+        List<Fight> fights = rouletteService.getFights();
+        return ResponseEntity.ok(fights);
     }
 }

@@ -11,21 +11,12 @@ public class OwnedCharacter implements Serializable {
     @EmbeddedId
     public OwnedCharacterId ownedCharacterId;
 
-    @ManyToOne
-    @JoinColumn(name = "code", referencedColumnName = "code")
-    private Character character;
-
-    @ManyToOne
-    @JoinColumn(name = "id",referencedColumnName = "id")
-    private Player player;
-
     public OwnedCharacter() {
-        //for object mappers
+
     }
 
-    public OwnedCharacter(Character character, Player player) {
-        this.character = character;
-        this.player = player;
+    public OwnedCharacter(OwnedCharacterId ownedCharacterId) {
+        this.ownedCharacterId = ownedCharacterId;
     }
 
     @Override
@@ -33,19 +24,12 @@ public class OwnedCharacter implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OwnedCharacter that = (OwnedCharacter) o;
-        return Objects.equals(character, that.character) && Objects.equals(player, that.player);
+        return Objects.equals(ownedCharacterId, that.ownedCharacterId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(character, player);
+        return Objects.hash(ownedCharacterId);
     }
 
-    @Override
-    public String toString() {
-        return "OwnedCharacter{" +
-                "character=" + character +
-                ", player=" + player +
-                '}';
-    }
 }
