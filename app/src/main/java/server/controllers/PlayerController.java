@@ -2,6 +2,7 @@ package server.controllers;
 
 import commons.Character;
 import commons.OwnedCharacter;
+import commons.OwnedCharacterId;
 import commons.Player;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -81,6 +82,19 @@ private final CharacterService characterService;
         }
     }
 
+    @PatchMapping("/players/{id}/characters/{code}/upgrade")
+    public ResponseEntity<OwnedCharacter> upgradeCharacter(@PathVariable long id, @PathVariable long code){
+        if (id < 0 || code < 0) return ResponseEntity.badRequest().build();
+        try {
+            return ResponseEntity.ok(playerService.upgradeOwnedCharacter(id, code));
+        }
+        catch (IllegalStateException e) {
+            return ResponseEntity.badRequest().build();
+        }
+        catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
 
 }
-

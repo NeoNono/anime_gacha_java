@@ -27,7 +27,7 @@ public class PlayerService {
         this.playerRepository = playerRepository;
         this.ownedCharacterRepository = ownedCharacterRepository;
         this.characterRepository = characterRepository;
-     //   defaultCharacter = this.characterRepository.findById(Long.valueOf(11)).get();
+     //   defaultCharacter = this.characterRepository.findById(Long.valueOf(13)).get();
     }
 
     public boolean exists(long id) {
@@ -74,6 +74,24 @@ public class PlayerService {
         playerRepository.save(player);
 
         return ownedCharacterRepository.findAllByOwnedCharacterIdPlayerId(id);
+    }
+
+    public OwnedCharacter upgradeOwnedCharacter(long id, long code){
+        Player player = playerRepository.findById(id).orElseThrow();
+        Character character = characterRepository.findById(code).orElseThrow();
+        OwnedCharacter ownedCharacter = ownedCharacterRepository.findById(new OwnedCharacterId(character, player)).orElseThrow();
+
+        if(player.getBalance()<500){
+            throw new IllegalStateException("You don't have enough money for an upgrade!");
+        }
+        player.setBalance(player.getBalance()-500);
+        ownedCharacter.setDamage(ownedCharacter.getDamage()+1);
+        ownedCharacter.setHealth(ownedCharacter.getHealth()+4);
+        ownedCharacter.setStamina(ownedCharacter.getStamina()+2);
+        ownedCharacterRepository.save(ownedCharacter);
+        playerRepository.save(player);
+
+        return ownedCharacter;
     }
 
 }

@@ -11,6 +11,7 @@ import server.database.PlayerRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import static commons.Rarity.*;
 
@@ -32,7 +33,8 @@ public class RouletteService {
     }
 
     public Optional<Character> pullRoulette(long playerId) {
-        int roll = 100;
+        Random rng = new Random();
+        int roll = rng.nextInt(100);
         Optional<Character> character = Optional.empty();
         if (roll < 5) {
             // character = getRandomLegendary();
@@ -42,7 +44,15 @@ public class RouletteService {
             // }
             // else {
             //     return character;
+        } else if(roll<25){
+            // character = getRandomRare();
+        } else {
+            // character = getRandomRegular();
         }
+    }
+
+    private Optional<Character>getRandomLegendary(){
+
     }
 
 
