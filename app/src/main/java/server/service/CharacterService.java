@@ -39,7 +39,8 @@ public class CharacterService {
 
 
     @Autowired
-    public CharacterService(CharacterRepository characterRepository, OwnedCharacterRepository ownedCharacterRepository, PlayerRepository playerRepository){
+    public CharacterService(CharacterRepository characterRepository, OwnedCharacterRepository ownedCharacterRepository,
+                            PlayerRepository playerRepository){
         this.characterRepository = characterRepository;
         this.ownedCharacterRepository = ownedCharacterRepository;
         this.playerRepository = playerRepository;

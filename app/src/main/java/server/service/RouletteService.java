@@ -32,9 +32,6 @@ public class RouletteService {
         this.characterService = characterService;
     }
 
-
-
-
     public Optional<List<OwnedCharacter>> pullRoulette(long id) {
         Player player = playerRepository.findById(id).orElseThrow();
         List<OwnedCharacter> ownedCharacters = ownedCharacterRepository.findAllByOwnedCharacterIdPlayerId(id);
@@ -59,23 +56,22 @@ public class RouletteService {
             playerRepository.save(player);
             return Optional.empty();
         } else {
-            return Optional.of(characterService.addCharacterToPlayer(id, character.get().code));
+            return Optional.of(characterService.addCharacterToPlayer(id, character.get().code)); //add character to collection
         }
     }
 
     private static Optional<Character> getRandomLegendary (List<OwnedCharacter> ownedCharacters) {
-
-
+        //TODO: getting the codes of all legendary characters and randomly assigning
     }
 
     private static Optional<Character> getRandomRare (List<OwnedCharacter> ownedCharacters) {
-
+        //TODO
     }
 
     private static Optional<Character> getRandomRegular (List<OwnedCharacter> ownedCharacters) {
-
+        //TODO
     }
 
-    //addCharacterToPlayer by id
+
 
 }
