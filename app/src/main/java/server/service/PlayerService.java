@@ -65,11 +65,10 @@ public class PlayerService {
 
 
     public List<OwnedCharacter> sellGivenCharacter(long id, long code){
-        if(code == 13L) {throw new RuntimeException("This character can't be sold!");}
-        Player player = playerRepository.findById(id).orElse(null);
-        OwnedCharacter ownedCharacter = (OwnedCharacter) ownedCharacterRepository.findAllByOwnedCharacterIdPlayerId(id);
-        Character character = characterRepository.findById(code).orElse(null);
-
+        if(code == 13L) {throw new IllegalStateException("This is your default character, it can't be sold!");}
+        Player player = playerRepository.findById(id).orElseThrow();
+        Character character = characterRepository.findById(code).orElseThrow();
+        OwnedCharacter ownedCharacter = ownedCharacterRepository.findById(new OwnedCharacterId(character, player)).orElseThrow();
         player.setBalance((int) (player.getBalance() + character.getSELL_COEFF()));
         ownedCharacterRepository.delete(ownedCharacter);
         playerRepository.save(player);

@@ -67,16 +67,7 @@ public class CharacterController {
     }
 
 
-//    @PostMapping("/characters/{code}/add")
-//    public ResponseEntity<List<OwnedCharacter>> addCharacterToOwned(@PathVariable long id, @PathVariable long code){
-//        if (id < 0 || !playerService.exists(id)) {
-//            return ResponseEntity.badRequest().build();
-//        } else if (code<0 || !characterService.exists(code)){
-//            return ResponseEntity.badRequest().build();
-//        }
-//
-//        return ResponseEntity.ok(ownedCharacterService.addCharacterToPlayer(id, code));
-//    }
+
 
 
 

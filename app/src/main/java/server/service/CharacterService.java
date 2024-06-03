@@ -67,14 +67,19 @@ public class CharacterService {
         return character.getAppearance();
     }
 
-//    public List<OwnedCharacter> addCharacterToPlayer(long id, long code){
-//        Player player = playerRepository.findById(id).orElse(null);
-//        Character character = characterRepository.findById(code).orElse(null);
-//        OwnedCharacter ownedCharacter = new OwnedCharacter(new OwnedCharacterId(character, player));
-//
-//
-//        return ownedCharacterRepository.save(ownedCharacter);
-//    }
+    public List<OwnedCharacter> addCharacterToPlayer(long id, long code){
+        Player player = playerRepository.findById(id).orElseThrow();
+        Character character = characterRepository.findById(code).orElseThrow();
+        OwnedCharacterId compositeId = new OwnedCharacterId(character, player);
+
+        if (ownedCharacterRepository.existsById(compositeId))
+            throw new IllegalStateException("Cannot save duplicate characters.");
+
+        OwnedCharacter ownedCharacter = new OwnedCharacter(new OwnedCharacterId(character, player));
+        ownedCharacterRepository.save(ownedCharacter);
+
+        return ownedCharacterRepository.findAllByOwnedCharacterIdPlayerId(id);
+    }
 
 
     public boolean exists(long code) {

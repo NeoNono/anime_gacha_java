@@ -67,12 +67,17 @@ private final CharacterService characterService;
 
     @PatchMapping("/players/{id}/characters/{code}/sell")
     public ResponseEntity<List<OwnedCharacter>> sellOwnedCharacter(@PathVariable long id, @PathVariable long code){
-        if (id < 0 || !playerService.exists(id)) {
-            return ResponseEntity.badRequest().build();
-        } else if (code<0 || !characterService.exists(code)){
+        if (id < 0 || code < 0) return ResponseEntity.badRequest().build();
+
+        try {
+            return ResponseEntity.ok(playerService.sellGivenCharacter(id, code));
+        }
+        catch (IllegalStateException e) {
             return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok(playerService.sellGivenCharacter(id, code));
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
