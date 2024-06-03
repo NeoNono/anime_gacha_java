@@ -1,5 +1,6 @@
 package server.controllers;
 
+import commons.Character;
 import commons.OwnedCharacter;
 import commons.Player;
 import org.springframework.http.ResponseEntity;
@@ -64,6 +65,16 @@ private final CharacterService characterService;
         return ResponseEntity.ok(playerService.getPlayerCharacters(id));
     }
 
+    @PatchMapping("/players/{id}/characters/{code}/sell")
+    public ResponseEntity<List<OwnedCharacter>> sellOwnedCharacter(@PathVariable long id, @PathVariable long code){
+        if (id < 0 || !playerService.exists(id)) {
+            return ResponseEntity.badRequest().build();
+        } else if (code<0 || !characterService.exists(code)){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(playerService.sellGivenCharacter(id, code));
+    }
 
 
 }
+

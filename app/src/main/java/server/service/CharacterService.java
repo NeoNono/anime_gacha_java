@@ -1,12 +1,13 @@
 package server.service;
 
+import commons.*;
 import commons.Character;
-import commons.Rarity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import server.database.CharacterRepository;
 import server.database.OwnedCharacterRepository;
+import server.database.PlayerRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,8 @@ public class CharacterService {
 
     private final CharacterRepository characterRepository;
     private final OwnedCharacterRepository ownedCharacterRepository;
+
+    private final PlayerRepository playerRepository;
 
 
     public List<Character> possibleCharacters =
@@ -36,13 +39,21 @@ public class CharacterService {
 
 
     @Autowired
-    public CharacterService(CharacterRepository characterRepository, OwnedCharacterRepository ownedCharacterRepository){
+    public CharacterService(CharacterRepository characterRepository, OwnedCharacterRepository ownedCharacterRepository, PlayerRepository playerRepository){
         this.characterRepository = characterRepository;
         this.ownedCharacterRepository = ownedCharacterRepository;
+        this.playerRepository = playerRepository;
     }
 
     public List<Character> getPossibleCharacters() {
         return this.characterRepository.findAll();
+    }
+
+    public Character getCharacterById(long code) {
+        return characterRepository.findById(code).get();
+    }
+    public void deleteCharacter(long code) {
+        characterRepository.deleteById(code);
     }
 
     public void seedDatabase(){
@@ -55,6 +66,15 @@ public class CharacterService {
         Character character = characterRepository.findById(code).orElse(null);
         return character.getAppearance();
     }
+
+//    public List<OwnedCharacter> addCharacterToPlayer(long id, long code){
+//        Player player = playerRepository.findById(id).orElse(null);
+//        Character character = characterRepository.findById(code).orElse(null);
+//        OwnedCharacter ownedCharacter = new OwnedCharacter(new OwnedCharacterId(character, player));
+//
+//
+//        return ownedCharacterRepository.save(ownedCharacter);
+//    }
 
 
     public boolean exists(long code) {
