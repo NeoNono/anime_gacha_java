@@ -3,6 +3,7 @@ package server.service;
 import commons.Character;
 import commons.OwnedCharacter;
 import commons.Player;
+import commons.Rarity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.database.CharacterRepository;
@@ -42,14 +43,14 @@ public class RouletteService {
         int roll = rng.nextInt(100);
 
         Optional<Character> character;
-        if (roll <= 5) {
-            character = getRandomLegendary(ownedCharacters);
+        if (roll <= 4) {
+            character = this.getRandomCharacter(ownedCharacters, Rarity.LEGENDARY);
         }
-        else if (roll <=30){
-            character = getRandomRare(ownedCharacters);
+        else if (roll <=29){
+            character = this.getRandomCharacter(ownedCharacters, Rarity.RARE);
         }
         else
-            character = getRandomRegular(ownedCharacters);
+            character = this.getRandomCharacter(ownedCharacters, Rarity.REGULAR);
         //duplicates
         if (character.isEmpty()) {
             player.setBalance(player.getBalance() + 300);
@@ -60,21 +61,16 @@ public class RouletteService {
         }
     }
 
-    private static Optional<Character> getRandomLegendary (List<OwnedCharacter> ownedCharacters) {
-        //TODO: getting the codes of all legendary characters and randomly assigning
-        return null;
+    private Optional<Character> getRandomCharacter(List<OwnedCharacter> ownedCharacters, Rarity rarity) {
+        Random rng = new Random();
+        List<Character> legendaryCharacters = this.characterRepository.findAllByRarity(rarity);
+        int roll = rng.nextInt(legendaryCharacters.size());
+        Character rolledChar = legendaryCharacters.get(roll);
+        if (ownedCharacters.stream()
+                .map(ownedCharacter -> ownedCharacter.ownedCharacterId.character)
+                .toList().contains(rolledChar)) {
+            return Optional.empty();
+        }
+        return Optional.of(rolledChar);
     }
-
-    private static Optional<Character> getRandomRare (List<OwnedCharacter> ownedCharacters) {
-        //TODO
-        return null;
-    }
-
-    private static Optional<Character> getRandomRegular (List<OwnedCharacter> ownedCharacters) {
-        //TODO
-        return null;
-    }
-
-
-
 }

@@ -2,9 +2,10 @@ package server.controllers;
 
 import commons.Character;
 import commons.Fight;
+import commons.OwnedCharacter;
+import org.hibernate.annotations.Parameter;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import server.database.OwnedCharacterRepository;
 import server.service.CharacterService;
 import server.service.FightService;
@@ -12,6 +13,7 @@ import server.service.PlayerService;
 import server.service.RouletteService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class RouletteController {
@@ -47,6 +49,18 @@ public class RouletteController {
 
         return ResponseEntity.ok(welcomeMessage);
 
+    }
+
+    @PostMapping("/roulette/pulls")
+    public ResponseEntity<List<OwnedCharacter>> pullRoulette(@RequestParam long playerId){
+        if (playerId < 0 || !playerService.exists(playerId)) {
+            return ResponseEntity.badRequest().build();
+        }
+        Optional<List<OwnedCharacter>> ownedCharacters = this.rouletteService.pullRoulette(playerId);
+        if (ownedCharacters.isEmpty())
+            return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok(ownedCharacters.get());
     }
 
 
