@@ -2,6 +2,8 @@ package server.service;
 
 import commons.Character;
 import commons.Fight;
+import commons.OwnedCharacter;
+import commons.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.database.CharacterRepository;
@@ -9,6 +11,7 @@ import server.database.FightRepository;
 import server.database.OwnedCharacterRepository;
 import server.database.PlayerRepository;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static commons.Rarity.*;
@@ -38,6 +41,20 @@ public class FightService {
                 new Fight(new Character("Lucy", REGULAR, 25, 10, 5, 0, lucyAscii())));
         return enemiesList;
     }
+    public void seedDatabase(){
+        List<Fight> fights = new LinkedList<>();
+        for (Fight fight : getFights()) {
+            fight.enemyCharacter = this.characterRepository.save(fight.enemyCharacter);
+            fights.add(fight);
+        }
+
+        for(Fight fight : fights){
+            this.fightRepository.save(fight);
+        }
+    }
+//    public Player fightEnemy(long id, long code, long fightId){
+//
+//    }
 
     public static String yaeAscii(){
         return "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠴⠛⡟⠓⠢⠤⢄⠀⠀⠀⠐⠀⠀⠀⠀⡇⣷⡆⠀⠀⠀⠀⠙⣆⠀⠀⠰⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +

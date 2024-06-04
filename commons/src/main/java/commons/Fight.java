@@ -1,9 +1,6 @@
 package commons;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,6 +10,8 @@ public class Fight  implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public long id;
 
+    @ManyToOne
+    @JoinColumn(name = "code", referencedColumnName = "code")
     public Character enemyCharacter;
 
     public Fight() {
