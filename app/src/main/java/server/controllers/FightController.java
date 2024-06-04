@@ -43,18 +43,18 @@ public class FightController {
 
     @GetMapping("/fights")
     public ResponseEntity<List<Fight>> possibleFights(){
-        List<Fight> fights = fightService.getFights();
+        List<Fight> fights = fightService.getPossibleFights();
         return ResponseEntity.ok(fights);
     }
 
-//    @PostMapping("/players/{id}/characters/{code}/fights/{fightId}")
-//    public ResponseEntity<Player> fightAnEnemy(@PathVariable long id, @PathVariable long code, @PathVariable long fightId){
-//        if (id < 0 || code < 0) return ResponseEntity.badRequest().build();
-//        try {
-//            return ResponseEntity.ok(fightService.fightEnemy(id, code, fightId));
-//        } catch (NoSuchElementException e) {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//    }
+    @PostMapping("/players/{id}/characters/{code}/fights/{fightId}")
+    public ResponseEntity<Player> fightAnEnemy(@PathVariable long id, @PathVariable long code, @PathVariable long fightId){
+        if (id < 0 || code < 0) return ResponseEntity.badRequest().build();
+        try {
+            return ResponseEntity.ok(fightService.fightEnemy(id, code, fightId));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
 }
