@@ -21,13 +21,15 @@ public class PlayerService {
 
     private final CharacterRepository characterRepository;
 
-    private Character defaultCharacter;
     @Autowired
     public PlayerService(PlayerRepository playerRepository, OwnedCharacterRepository ownedCharacterRepository, CharacterRepository characterRepository) {
         this.playerRepository = playerRepository;
         this.ownedCharacterRepository = ownedCharacterRepository;
         this.characterRepository = characterRepository;
-     //   defaultCharacter = this.characterRepository.findById(Long.valueOf(13)).get();
+    }
+
+    public Character getDefaultCharacter() {
+        return this.characterRepository.findByName("Vendy").orElseThrow(() -> new RuntimeException("Default character not found"));
     }
 
     public boolean exists(long id) {
@@ -45,11 +47,7 @@ public class PlayerService {
     public Player createPlayer() {
         Player player = playerRepository.save(new Player());
 
-           Character defaultCharacter = characterRepository.findById(13L).orElseThrow(() -> new RuntimeException("Default character not found"));
-
-        System.out.println("found the default character with ID " + defaultCharacter.code);
-
-        ownedCharacterRepository.save(new OwnedCharacter(new OwnedCharacterId(defaultCharacter, player)));
+        ownedCharacterRepository.save(new OwnedCharacter(new OwnedCharacterId(getDefaultCharacter(), player)));
         return player;
     }
 
@@ -65,7 +63,7 @@ public class PlayerService {
 
 
     public List<OwnedCharacter> sellGivenCharacter(long id, long code){
-        if(code == 13L) {throw new IllegalStateException("This is your default character, it can't be sold!");}
+        if(code == getDefaultCharacter().code) {throw new IllegalStateException("This is your default character, it can't be sold!");}
         Player player = playerRepository.findById(id).orElseThrow();
         Character character = characterRepository.findById(code).orElseThrow();
         OwnedCharacter ownedCharacter = ownedCharacterRepository.findById(new OwnedCharacterId(character, player)).orElseThrow();
@@ -88,7 +86,7 @@ public class PlayerService {
         ownedCharacter.setDamage(ownedCharacter.getDamage()+1);
         ownedCharacter.setHealth(ownedCharacter.getHealth()+4);
         ownedCharacter.setStamina(ownedCharacter.getStamina()+2);
-        ownedCharacterRepository.save(ownedCharacter);
+        ownedCharacter = ownedCharacterRepository.save(ownedCharacter);
         playerRepository.save(player);
 
         return ownedCharacter;

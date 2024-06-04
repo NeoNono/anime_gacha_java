@@ -62,14 +62,17 @@ public class RouletteService {
 
     private static Optional<Character> getRandomLegendary (List<OwnedCharacter> ownedCharacters) {
         //TODO: getting the codes of all legendary characters and randomly assigning
+        return null;
     }
 
     private static Optional<Character> getRandomRare (List<OwnedCharacter> ownedCharacters) {
         //TODO
+        return null;
     }
 
     private static Optional<Character> getRandomRegular (List<OwnedCharacter> ownedCharacters) {
         //TODO
+        return null;
     }
 
 
