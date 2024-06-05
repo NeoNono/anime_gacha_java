@@ -40,10 +40,97 @@ public class RouletteController {
                 <p>
                 Welcome to GachaGirls! <br>
                 Here is the API map: <br>
-                POST /players <br>
+                <strong>Player options</strong><br>
+                <br>
+                <strong>POST /players </strong><br>
                     Create a new player <br>
-                    <br>
-                etc...<br>
+                <strong>GET /players/{id}</strong> <br>
+                    Get details by player's id<br>
+                <strong>DELETE /players/{id}</strong> <br>
+                    Delete specific player<br>
+                <strong>GET /players/{id}/characters</strong><br>
+                    Get a list of owned characters<br>
+                <strong>PATCH /players/{id}/characters/{code}/sell</strong><br>
+                    Sell owned character<br>
+                <strong>PATCH /players/{id}/characters/{code}/upgrade</strong><br>
+                    Upgrade the owned character<br>
+                <br>
+                <br>
+                <strong>Character options</strong><br>
+                <br>
+                <strong>GET /characters/{code}</strong><br>
+                    Get the details of a specific character<br>
+                <strong>DELETE  /characters/{code}</strong><br>
+                    Delete character by code<br>
+                <strong>GET /characters/{code}/appearance</strong><br>
+                    Get the ascii art of a specific character<br>
+                <strong>GET /characters</strong><br>
+                    Get the list of all possible characters<br>
+                <br>
+                <br>
+                <strong>Fight options</strong><br>
+                <br>
+                <strong>GET /fights</strong><br>
+                    Get the list of available fights<br>
+                <strong>POST  /players/{id}/characters/{code}/fights/{fightId}</strong><br>
+                    Choose the fight you want to take part in and fight an enemy<br>
+                <br>
+                <br>
+                <strong>Roulette options</strong><br>  
+                <br>
+                <strong>POST /roulette/pulls</strong><br>
+                    Make a pull<br>
+                <br>
+                  
+                There are also some things you should take into account before playing GachaGirls: <br>
+                <br>
+                <strong>1.</strong> Every player has a default character in their collection. Although you can't sell your default character,<br> 
+                the rest of options are available for it.<br>
+                <strong>2.</strong> Your starting balance is 100 gold. Each pull costs 50 gold.<br>
+                <strong>3.</strong> If you want to sell the character, the selling price is 35% less than the starting price.<br>
+                <strong>4.</strong> For the fight you can choose characters with different difficulties. You can enter fights for free, <br>
+                but if yot character has lost then 600 gold is withdrawn from your account. Otherwise, if your character wins you get 1000 gold as a reward.<br>
+                <strong>5.</strong> When making a pull you have a chance of winning the characters with different probabilities: Rare, Epic and Legendary.<br>
+                If you obtained a character that is already present in your collection then you get a compensation of 200 gold, otherwise a new character is added to your collection.<br>
+                <br>
+                <br>
+                Our game is still in development and new features will be added with time. We hope you will have fun and enjoy our game!<br>
+                <pre>
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠉⠁⠀⣠⡴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠓⠦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⠀⡴⠎⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡾⠋⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣆⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠏⠀⠀⢀⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣦⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠃⠀⠀⣠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡄⠘⣧⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠁⠀⠀⣰⠋⠀⠀⠀⠀⠀⢠⣶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⠰⡾⣆⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⣸⠃⠀⠀⣰⠃⠀⠀⠀⠀⠀⢠⡟⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡆⢱⡹⡄⠀⠀⠀⠀
+                ⡄⠀⠀⠀⠀⠀⠀⢀⡏⠀⠀⢰⠏⠀⠀⠀⠀⠀⢀⡟⠀⡇⠀⠀⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⢷⢳⠀⠀⠀⠀
+                ⠙⣆⠀⠀⠀⠀⠀⢸⠁⠀⢠⡏⠀⠀⠀⠀⠀⠀⣼⠀⠀⣧⠀⠀⠀⢨⢧⠀⠀⠀⠀⠀⠀⠀⠀⢠⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡜⠘⣮⡟⣇⠀⠀⠀
+                ⠀⠘⣦⠀⠀⠀⠀⣿⠀⠀⡼⠁⠀⠀⠀⠀⢀⣼⠇⠀⠀⢿⠀⠀⠀⢸⠸⣷⡀⠀⠀⠀⠀⠀⠀⣾⣴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠹⣽⣿⠀⠀⠀
+                ⠀⠀⠘⣆⠀⠀⠀⡟⠀⢠⠇⢠⣰⠂⠀⠀⡾⡏⠀⠀⠀⠸⡆⠀⠀⠘⡇⢹⣇⠀⠀⠀⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⢀⢠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡞⠀⠀⢹⠀⠀⢳⣿⡆⠀⠀
+                ⠀⠀⠀⠹⡀⠀⠀⡇⠀⢸⢀⡞⣿⠀⠀⢸⣿⣁⣀⡀⠀⠀⢷⣀⠀⠀⢷⠀⣿⣆⠀⠀⠀⠀⠀⣿⣿⣧⠀⠀⠀⠀⠸⡸⢹⠀⠀⠀⠀⠀⠀⠀⠀⢀⡇⠀⠀⢸⡶⠀⢸⣷⡇⠀⠀
+                ⠀⠀⠀⠀⠇⠀⢸⡇⠀⣾⣮⡇⣿⠀⠀⡟⡿⠀⠀⠉⠛⠳⢾⣾⡀⢠⠸⡇⠘⣿⢦⠀⠀⢆⠀⣿⡇⣿⡆⠀⠀⠀⠀⡇⣽⡇⠀⠀⠀⠀⠀⠀⠀⢸⡇⢠⡆⢸⡇⠀⡄⣿⡇⠀⠀
+                ⠀⠀⠀⠀⢠⠀⢸⡇⠀⢸⢹⢻⢻⠀⢰⣿⡇⠀⠀⠀⠀⠀⠀⠹⣧⣸⣧⣻⡀⠸⣿⣿⣆⡼⡆⣿⣇⣿⣿⣦⠀⠀⠀⣿⡏⣇⠀⠀⠀⢠⠀⠀⠀⢸⠃⣸⣇⠈⡇⠀⡇⠻⡇⠀⠀
+                ⠀⠀⠀⠀⢸⠀⢸⡇⠀⢸⡼⡟⡞⣇⠀⣿⣧⣤⣴⣶⡒⠶⠦⣤⠹⣿⣻⣿⣧⡀⢻⣿⣿⣿⣿⣿⡟⢻⡾⣽⣷⣦⠀⠘⣧⣿⡀⠀⠀⠈⠀⠀⠀⣿⢀⣿⣸⠀⣇⠀⢹⢰⠇⠀⠀
+                ⠀⠀⠀⠀⢸⠀⢸⡇⠀⠘⡇⠹⣿⣿⣔⣿⠋⠉⢹⣿⡿⣿⣶⣙⣧⠈⠳⣽⣿⣷⡄⢿⣿⠻⣷⣿⣷⠀⢻⣻⣽⣿⣧⠀⣹⣿⣿⡀⠀⡆⠀⠀⠀⣿⣜⢿⣿⠀⣿⠀⢸⣿⠀⠀⠀
+                ⠀⠀⠀⠀⡾⠀⢸⠇⠀⠀⢧⡀⢸⠋⠻⣷⠀⠀⢸⣧⣸⣿⣿⠻⣟⠃⠀⠀⠀⠉⠋⠘⠟⠀⠉⣹⣷⣤⣴⠿⢿⣻⣿⣧⡇⡾⢿⣇⠀⣷⠀⠀⢰⣿⠉⠙⠻⣄⣿⠀⣼⠇⠀⠀⠀
+                ⠀⠀⠀⢀⡇⠀⢸⠀⡄⠀⠈⠃⣾⠀⠀⠘⣺⢧⣈⠛⠷⠿⠛⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣧⠾⠿⣻⣿⢿⣿⣿⢿⣷⡇⠸⣿⠀⣿⠀⠀⠀⡟⠓⢦⣀⠙⣿⣠⠏⠀⠀⠀⠀
+                ⠀⠀⠀⣾⠁⠀⢸⠀⡇⠀⠀⠀⡿⠀⠀⠀⠈⠙⠚⠝⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣹⣬⣿⡟⢿⣾⣃⠀⢹⡇⣿⠀⠀⢠⣧⠖⠒⢻⠀⠈⣯⠀⠀⠀⠀⠀
+                ⠀⠀⣰⠃⠀⠀⢸⠀⠅⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠘⠿⣴⣿⠿⠃⠀⠙⠿⠟⢹⣁⣿⣠⡇⢹⠁⠀⢀⡾⠀⢠⡟⠀⠀⠀⠀⠀
+                ⠀⢰⠏⠀⠀⠀⢸⠀⠁⠀⠀⢸⡅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠲⠶⠶⠶⠀⠀⠀⠀⢸⢹⣽⢸⠀⢸⠀⠀⣸⠃⣠⡟⠀⠀⠀⠀⠀⠀
+                ⣴⠏⠀⠀⠀⠀⢸⠀⠀⠀⠀⢸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⡇⠘⠂⣾⠀⢀⣇⣴⡏⠀⠀⠀⠀⠀⠀⠀
+                ⢯⣀⡀⠀⠀⠀⢸⡀⢸⠀⠀⡜⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡾⢿⣿⡇⠀⠀⣿⠀⢸⣹⡟⠀⠀⠀⠀⠀⠀⠀⠀
+                ⣀⠈⠙⠓⣦⣤⢸⡇⢸⠀⠀⡇⢸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠞⠉⠀⣸⡟⠀⠀⠀⡇⣰⠇⡾⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠉⠉⠉⠉⠉⠁⢸⡇⢸⡄⠀⡇⠀⢻⣆⠀⠀⠀⠐⢦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⠋⠀⠀⠀⠀⣿⠀⠀⠀⢰⡇⠁⣰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠸⡇⢸⡇⢸⡇⠀⣸⠿⣆⠀⠀⠀⠀⠈⠳⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⠁⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⢸⣠⡞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⣇⢸⡇⢸⡏⠉⢹⡆⠹⣆⠀⠀⠀⠀⠀⠀⠈⠉⠙⠛⠛⠿⠆⠀⠀⠀⠀⠀⠀⠀⣰⠏⠀⠀⠀⠀⠀⠀⠀⢀⡇⠀⠀⠀⢺⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⢠⣿⢸⡇⣸⡇⠀⢸⠃⠀⠹⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠏⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⡞⠲⣤⡤⠤⠤⠴⠶⠶⠶⠤⠤⢤⣀
+                ⠀⠀⠀⠀⠀⠀⣾⢻⠀⡇⢻⡇⠀⢸⠀⠀⠀⠙⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⡇⠀⠀⠉⠒⢤⡀⠀⠤⠤⣤⣄⣀⣈
+                ⠀⠀⠀⣠⣤⠴⣿⠈⡆⢿⣾⣧⣄⣸⠀⠀⠀⠀⠈⢦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣴⢞⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠁⠀⠀⢠⡇⠀⠀⠀⠀⠀⠙⠲⠀⠀⠀⠀⠀⠀
+                ⡤⠖⠋⠁⠀⠀⢿⠀⢷⣾⢹⡇⠙⢿⣤⡀⠀⠀⠀⠀⠙⠿⠶⣦⣤⣤⣠⡤⠴⠶⠞⠛⣩⠵⠖⠁⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠀⠀⠀⣿⢷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⣾⡄⠸⣿⢸⡇⠀⠀⠈⠻⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡤⠞⠋⠁⠀⠀⠀⠀⠻⣦⡀⠀⠀⠀⠀⣠⣾⣿⠀⠀⠀⣿⠀⠙⢦⣀⡴⠛⠋⠉⠉⠛⠦⣄⠀⠀
+                ⠈⠀⠀⠀⠀⠘⠸⡇⠀⢹⣸⡇⠀⠀⠀⠀⠀⢉⡻⢦⣄⣀⠀⠀⣀⡤⠴⠛⠁⡀⠀⠀⠀⠀⠀⠀⠀⠀⢙⣿⣦⣀⡀⠀⠉⠋⣟⠀⠀⢸⣹⢀⣤⠖⠃⠀⠀⠀⠀⠀⠀⠀⠈⠳⣄
+                </pre>
+                <br>
                 </p>
                 """;
 

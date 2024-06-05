@@ -37,7 +37,7 @@ public class RouletteService {
         Player player = playerRepository.findById(id).orElseThrow();
         List<OwnedCharacter> ownedCharacters = ownedCharacterRepository.findAllByOwnedCharacterIdPlayerId(id);
         if (player.getBalance() < 50) {
-            throw new IllegalStateException("This is your default character, it can't be sold!");
+            throw new IllegalStateException("You don't have enough gold for a pull");
         }
         Random rng = new Random();
         int roll = rng.nextInt(100);
@@ -53,7 +53,7 @@ public class RouletteService {
             character = this.getRandomCharacter(ownedCharacters, Rarity.REGULAR);
         //duplicates
         if (character.isEmpty()) {
-            player.setBalance(player.getBalance() + 300);
+            player.setBalance(player.getBalance() + 200);
             playerRepository.save(player);
             return Optional.empty();
         } else {
