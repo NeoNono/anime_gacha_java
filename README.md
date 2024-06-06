@@ -1103,6 +1103,20 @@ spring.jpa.hibernate.ddl-auto=update
 
 ```
 
-## Application deployment
+## Conclusion
 
+Developing a multi-layered web application for managing banking transactions is a complex and multifaceted task that involves the design and implementation of various components, each of which plays an important role in the overall system architecture. This project allowed me to delve into various aspects of software development, learn and apply modern technologies and tools in practice.
+
+Designing and implementing the web layer was one of the most important tasks in the project. The web layer is responsible for processing HTTP requests from clients and returning responses. Using Spring Boot to implement RESTful web services made it possible to create an efficient and flexible interface for interaction between the client and the server. This ensured the reliability and scalability of the system, which is critical for any modern web application.
+
+The service layer provides the execution of the business logic of the application. Using Spring Service and inversion of control (IoC) allowed business logic to be organized as separate components that are easy to maintain, test and extend. The encapsulation of business logic into services increased the reliability and security of the system, ensuring effective management of data and operations.
+
+The storage layer is responsible for storing and managing data in the application. The use of JPA and Spring Data JPA ensured efficient interaction with the database, as well as execution of CRUD operations. The design and implementation of Entity-classes and Repository-interfaces made it possible to ensure data integrity and consistency. An important aspect was also ensuring data normalization, which allowed to minimize data redundancy and avoid anomalies.
+
+### Overall
+This project has enabled me to learn and implement various aspects of developing a multi-layered web application, from architectural design to the implementation and testing of system components. I gained valuable experience working with modern technologies and tools such as Spring Boot, Spring Security, JPA, and aspect-oriented programming (AOP). The result of my efforts is a functional and secure web application for managing banking transactions, which can be easily extended and maintained in the future.
+
+The project also highlighted the importance of best design practices, such as inversion of control, aspect-oriented programming, and proper data handling. Implementing these practices allows for the creation of robust, flexible, and scalable systems. By distributing responsibilities across different architectural layers, I was able to ensure high code quality and ease of maintenance.
+
+In the future, I plan to continue improving the application by adding new features and enhancing existing ones. I am also considering integrating with other services and platforms to increase the application's convenience and functionality. 
 
