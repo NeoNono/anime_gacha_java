@@ -68,6 +68,11 @@ public class RouletteController {
                     Get the list of all possible characters<br>
                 <br>
                 <br>
+                <strong>Roulette options</strong><br>  
+                <strong>POST /roulette/pulls</strong><br>
+                    Make a pull<br>
+                <br>
+                <br>
                 <strong>Fight options</strong><br>
                 <br>
                 <strong>GET /fights</strong><br>
@@ -76,12 +81,6 @@ public class RouletteController {
                     Choose the fight you want to take part in and fight an enemy<br>
                 <br>
                 <br>
-                <strong>Roulette options</strong><br>  
-                <br>
-                <strong>POST /roulette/pulls</strong><br>
-                    Make a pull<br>
-                <br>
-                  
                 There are also some things you should take into account before playing GachaGirls: <br>
                 <br>
                 <strong>1.</strong> Every player has a default character in their collection. Although you can't sell your default character,<br> 
@@ -94,7 +93,8 @@ public class RouletteController {
                 If you obtained a character that is already present in your collection then you get a compensation of 200 gold, otherwise a new character is added to your collection.<br>
                 <br>
                 <br>
-                Our game is still in development and new features will be added with time. We hope you will have fun and enjoy our game!<br>
+                Our game is still in development and new features will be added with time. We hope you will have fun and enjoy our game! ^^<br>
+                <br>
                 <pre>
                 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠉⠁⠀⣠⡴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠓⠦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⠀⡴⠎⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
